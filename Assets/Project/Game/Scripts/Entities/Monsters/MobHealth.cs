@@ -9,6 +9,8 @@ public class MobHealth : MonoBehaviour, IHealth
 	private int health;
 	private int maxHealth;
 
+	// small change
+
 	private void Awake()
 	{
 		maxHealth = mobBase.StatsAsset.MaxHealth;
