@@ -9,6 +9,10 @@ public class MobHealth : MonoBehaviour, IHealth
     [SerializeField] private int health;
     private int maxHealth;
 
+    [SerializeField] private GameObject pfEXPOrb;
+
+    private bool dying = false;
+
     private void Awake()
     {
         mobBase = GetComponentInParent<MobBase>();
@@ -37,6 +41,12 @@ public class MobHealth : MonoBehaviour, IHealth
 
     public void Die()
     {
+        if (!dying)
+        {
+            dying = true;
+            Instantiate(pfEXPOrb, transform.position, Quaternion.identity);
+        }
+
         Destroy(mobBase.gameObject);
     }
 }

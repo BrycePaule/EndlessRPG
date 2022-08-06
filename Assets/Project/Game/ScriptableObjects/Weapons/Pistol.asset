@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6ba308af69e44345bb211c77103b49c, type: 3}
   m_Name: Pistol
   m_EditorClassIdentifier: 
-  FireCooldown: 2
-  Damage: 1
-  Projectiles: 3
+  FireCooldown: 0.2
+  Damage: 2
+  Projectiles: 5
   BulletSpread: 40
   SizeMultiplier: 1
   TravelSpeed: 100

@@ -13,5 +13,6 @@ public static class GlobalSettings
     // LAYERS
     public static int PlayerLayerIndex = 8;
     public static int MonsterLayerIndex = 9;
+    public static int PickupsLayerIndex = 10;
 
 }

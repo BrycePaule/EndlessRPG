@@ -8,5 +8,6 @@ public class PlayerStats : ScriptableObject
 
     public int MaxHealth;
     public float MovementSpeed;
+    public float PickupRadius;
 
 }
