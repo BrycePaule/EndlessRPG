@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a6ba308af69e44345bb211c77103b49c, type: 3}
-  m_Name: Weapon
+  m_Name: Test
   m_EditorClassIdentifier: 
-  FireCooldown: 0.2
-  Damage: 2
-  Projectiles: 1
-  BulletSpread: 100
+  FireCooldown: 0.1
+  Damage: 1
+  Projectiles: 10
+  BulletSpread: 150
   SizeMultiplier: 1
-  TravelSpeed: 150
-  BulletLife: 3
+  TravelSpeed: 200
+  BulletLife: 10
   TravelStyle: 1
   BulletPrefab: {fileID: 3258009909095331399, guid: 892a0bd7f134ce345bab49ad9ad54aca, type: 3}

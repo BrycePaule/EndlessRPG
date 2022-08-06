@@ -27,7 +27,7 @@ public class PlayerWeapon : MonoBehaviour
 
             for (int i = 0; i < currWeapon.Projectiles; i++)
             {
-                currWeapon.ShootAt(GenerateBulletSpawnPosOffset(i, currWeapon.Projectiles), target);
+                currWeapon.Shoot(GenerateBulletSpawnPosOffset(i, currWeapon.Projectiles), target);
                 timer = 0f;
             }
         }

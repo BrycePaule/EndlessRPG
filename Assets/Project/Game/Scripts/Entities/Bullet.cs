@@ -20,13 +20,23 @@ public class Bullet : MonoBehaviour
 
     private Vector3 dirVector;
 
+    private void Start()
+    {
+        UpdateDirection();
+        UpdateRotation();
+    }
+
     private void FixedUpdate()
     {
         timer += Time.deltaTime;
         if (timer >= BulletLife) { Destroy(gameObject); }
 
-        UpdateDirection();
-        UpdateRotation();
+        if (TravelStyle == TravelStyle.Target)
+        {
+            UpdateDirection();
+            UpdateRotation();
+        }
+        
         Move();
     }
 

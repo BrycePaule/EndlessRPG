@@ -29,16 +29,16 @@ public class Weapon : ScriptableObject
     public GameObject BulletPrefab;
 
 
-    public void ShootAt(Vector3 from, Transform target)
+    public void Shoot(Vector3 from, Transform target)
     {
         Vector3 dirVector = (from - target.transform.position).normalized;
         float angle = Mathf.Atan2(dirVector.y, dirVector.x) * Mathf.Rad2Deg;
 
         GameObject _bulletObj = Instantiate(BulletPrefab, from, Quaternion.AngleAxis(angle, Vector3.forward));
+        _bulletObj.transform.localScale *= SizeMultiplier;
+
         Bullet _bullet = _bulletObj.GetComponent<Bullet>();
-
         _bullet.Target = target;
-
         _bullet.Damage = Damage;
         _bullet.Projectiles = Projectiles;
         _bullet.SizeMultiplier = SizeMultiplier;

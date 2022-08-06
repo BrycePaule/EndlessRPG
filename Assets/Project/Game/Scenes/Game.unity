@@ -1531,7 +1531,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1843205295}
   m_Layer: 0
-  m_Name: DistanceOverlays
+  m_Name: SpawnDistanceViz
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
