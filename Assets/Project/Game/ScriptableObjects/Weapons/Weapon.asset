@@ -9,8 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 556a9c308e0ce3c449bef5a2e81401bd, type: 3}
-  m_Name: PlayerStats
+  m_Script: {fileID: 11500000, guid: a6ba308af69e44345bb211c77103b49c, type: 3}
+  m_Name: Weapon
   m_EditorClassIdentifier: 
-  MaxHealth: 10
-  MovementSpeed: 100
+  FireCooldown: 1
+  Damage: 2
+  TravelSpeed: 150
+  BulletLife: 3
+  Style: 0
+  BulletPrefab: {fileID: 3258009909095331399, guid: 892a0bd7f134ce345bab49ad9ad54aca, type: 3}

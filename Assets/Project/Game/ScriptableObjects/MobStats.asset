@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dbb53b6109a19c347b78a004c7c80c45, type: 3}
-  m_Name: Default
+  m_Name: MobStats
   m_EditorClassIdentifier: 
-  MaxHealth: 0
+  MaxHealth: 5
   MovementSpeed: 70
   CollisionDamage: 1
   Bounciness: 0

@@ -6,11 +6,13 @@ public class MobHealth : MonoBehaviour, IHealth
 {
 	private MobBase mobBase;
 
-	private int health;
+	[SerializeField] private int health;
 	private int maxHealth;
 
 	private void Awake()
 	{
+		mobBase = GetComponentInParent<MobBase>();
+
 		maxHealth = mobBase.StatsAsset.MaxHealth;
 		health = mobBase.StatsAsset.MaxHealth;
 	}
@@ -20,7 +22,11 @@ public class MobHealth : MonoBehaviour, IHealth
 		if (amount <= 0) { return; }
 
 		health -= amount;
-		if (health == 0) { Die(); }
+		if (health <= 0) { Die(); }
+
+		SpriteRenderer SR = mobBase.GetComponent<SpriteRenderer>();
+		SR.color = new Color(SR.color.r + .1f, SR.color.g + .1f, SR.color.b + .1f);
+
 	}
 
 	public void Heal(int amount)

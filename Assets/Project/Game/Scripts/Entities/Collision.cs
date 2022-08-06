@@ -7,8 +7,6 @@ public class Collision : MonoBehaviour
 	private PlayerBase playerBase;
 	private PlayerHealth playerHealth;
 
-	const int PlayerLayerIndex = 8;
-	const int MonsterLayerIndex = 9;
 
 	private float timer = 0f;
 
@@ -22,9 +20,9 @@ public class Collision : MonoBehaviour
 	{
 		timer = 0f;
 
-		if (gameObject.layer == PlayerLayerIndex)	
+		if (gameObject.layer == GlobalSettings.PlayerLayerIndex)	
 		{
-			if (other.gameObject.layer == MonsterLayerIndex)
+			if (other.gameObject.layer == GlobalSettings.MonsterLayerIndex)
 			{
 				playerHealth.Damage(other.gameObject.GetComponentInParent<MobBase>().StatsAsset.CollisionDamage);
 				timer = 0f;
@@ -34,8 +32,8 @@ public class Collision : MonoBehaviour
 
 	private void OnCollisionStay2D(Collision2D other)
 	{
-		if (gameObject.layer != PlayerLayerIndex) { return; }
-		if (other.gameObject.layer != MonsterLayerIndex) { return; }
+		if (gameObject.layer != GlobalSettings.PlayerLayerIndex) { return; }
+		if (other.gameObject.layer != GlobalSettings.MonsterLayerIndex) { return; }
 
 		timer += Time.deltaTime;
 

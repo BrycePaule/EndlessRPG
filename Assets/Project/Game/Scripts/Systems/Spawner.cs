@@ -9,8 +9,8 @@ public class Spawner : MonoBehaviour
 	[SerializeField] private Transform MonsterContainer;
 
 	[SerializeField] private GameObject monster1;
-	// [SerializeField] private GameObject monster1;
-	// [SerializeField] private GameObject monster1;
+	// [SerializeField] private GameObject monster2;
+	// [SerializeField] private GameObject monster3;
 
 	[Header("Settings")]
 	public float MinSpawnDistanceFromPlayer;

@@ -50,9 +50,9 @@ TagManager:
   - name: Monsters
     uniqueID: 4244415099
     locked: 0
-  - name: Player
-    uniqueID: 3159560241
-    locked: 0
   - name: Projectiles
     uniqueID: 345128059
+    locked: 0
+  - name: Player
+    uniqueID: 3159560241
     locked: 0

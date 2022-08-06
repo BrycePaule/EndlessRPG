@@ -24,7 +24,7 @@ public class MobMovement : MonoBehaviour
 	public void Move()
 	{
 		Vector3 dir = (mobBase.Player.transform.position - transform.position).normalized;
-		mobBase.transform.position += dir * (stats.MovementSpeed * GlobalSettings.MovementSpeedScalar);
+		mobBase.transform.position += dir * (stats.MovementSpeed * GlobalSettings.TravelSpeedScalar);
 	}
 
 }

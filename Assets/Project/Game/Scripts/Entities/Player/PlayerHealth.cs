@@ -46,7 +46,7 @@ public class PlayerHealth : MonoBehaviour, IHealth
 	public void Die()
 	{
 		print("You died bruh");
-		Destroy(playerBase.gameObject);
+		// Destroy(playerBase.gameObject);
 	}
 
 	public void InitHealthBar()

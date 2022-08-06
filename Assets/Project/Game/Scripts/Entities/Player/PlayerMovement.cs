@@ -16,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
 
 	public void Move(Vector2 dir)
 	{
-		playerBase.transform.position += (Vector3) dir * (playerStats.MovementSpeed * GlobalSettings.MovementSpeedScalar);
+		playerBase.transform.position += (Vector3) dir * (playerStats.MovementSpeed * GlobalSettings.TravelSpeedScalar);
 	}
 
 }
