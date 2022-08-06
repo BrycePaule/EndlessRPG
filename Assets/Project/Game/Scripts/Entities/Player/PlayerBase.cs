@@ -5,6 +5,6 @@ using UnityEngine;
 public class PlayerBase : MonoBehaviour
 {
 
-	public PlayerStats StatsAsset;
+    public PlayerStats StatsAsset;
 
 }

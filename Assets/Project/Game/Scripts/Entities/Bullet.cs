@@ -7,14 +7,14 @@ public class Bullet : MonoBehaviour
 
     public Transform Target;
 
-	public int Damage;
-	public int Projectiles;
+    public int Damage;
+    public int Projectiles;
 
-	public float SizeMultiplier;
-	public float TravelSpeed;
+    public float SizeMultiplier;
+    public float TravelSpeed;
 
-	public float BulletLife;
-	public TravelStyle TravelStyle;
+    public float BulletLife;
+    public TravelStyle TravelStyle;
 
     private float timer;
 

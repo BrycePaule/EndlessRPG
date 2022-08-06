@@ -5,11 +5,11 @@ using UnityEngine;
 public class FollowPlayer : MonoBehaviour
 {
 
-	[SerializeField] private GameObject Player;
+    [SerializeField] private GameObject Player;
 
-	private void LateUpdate()
-	{
-		transform.position = Player.transform.position;
-	}
+    private void LateUpdate()
+    {
+        transform.position = Player.transform.position;
+    }
 
 }

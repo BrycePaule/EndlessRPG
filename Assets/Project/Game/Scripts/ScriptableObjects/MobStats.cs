@@ -6,13 +6,13 @@ using UnityEngine;
 public class MobStats : ScriptableObject
 {
 
-	public int MaxHealth;
-	public float MovementSpeed;
+    public int MaxHealth;
+    public float MovementSpeed;
 
-	public int CollisionDamage;
-	
-	// for knockback??
-	public float Bounciness;
+    public int CollisionDamage;
+    
+    // for knockback??
+    public float Bounciness;
 
 
 }

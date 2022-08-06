@@ -5,12 +5,12 @@ using UnityEngine;
 public class MobBase : MonoBehaviour
 {
 
-	public MobStats StatsAsset;
-	public PlayerBase Player;
+    public MobStats StatsAsset;
+    public PlayerBase Player;
 
-	private void Awake()
-	{
-		Player = FindObjectOfType<PlayerBase>();
-	}
+    private void Awake()
+    {
+        Player = FindObjectOfType<PlayerBase>();
+    }
 
 }

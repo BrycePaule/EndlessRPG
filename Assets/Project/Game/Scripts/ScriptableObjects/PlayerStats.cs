@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerStats : ScriptableObject
 {
 
-	public int MaxHealth;
-	public float MovementSpeed;
+    public int MaxHealth;
+    public float MovementSpeed;
 
 }
