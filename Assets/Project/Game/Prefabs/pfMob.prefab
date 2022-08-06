@@ -156,7 +156,7 @@ GameObject:
   - component: {fileID: 4585936058182777957}
   - component: {fileID: 762865676441434193}
   m_Layer: 9
-  m_Name: Mob
+  m_Name: pfMob
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

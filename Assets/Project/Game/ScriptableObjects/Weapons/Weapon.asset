@@ -12,9 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6ba308af69e44345bb211c77103b49c, type: 3}
   m_Name: Weapon
   m_EditorClassIdentifier: 
-  FireCooldown: 1
+  FireCooldown: 0.2
   Damage: 2
+  Projectiles: 1
+  BulletSpread: 100
+  SizeMultiplier: 1
   TravelSpeed: 150
   BulletLife: 3
-  Style: 0
+  TravelStyle: 1
   BulletPrefab: {fileID: 3258009909095331399, guid: 892a0bd7f134ce345bab49ad9ad54aca, type: 3}

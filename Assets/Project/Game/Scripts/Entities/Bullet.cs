@@ -7,9 +7,14 @@ public class Bullet : MonoBehaviour
 
     public Transform Target;
 
-    public int Damage;
-    public float TravelSpeed;
-    public float BulletLife;
+	public int Damage;
+	public int Projectiles;
+
+	public float SizeMultiplier;
+	public float TravelSpeed;
+
+	public float BulletLife;
+	public TravelStyle TravelStyle;
 
     private float timer;
 
@@ -40,8 +45,8 @@ public class Bullet : MonoBehaviour
     {
         if (Target == null) { return; }
 
-        float angle = Mathf.Atan2(dirVector.y, dirVector.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        float angleInDegrees = Mathf.Atan2(dirVector.y, dirVector.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.AngleAxis(angleInDegrees, Vector3.forward);
     }
 
     private void OnTriggerEnter2D(Collider2D other)

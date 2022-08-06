@@ -4,30 +4,57 @@ using UnityEngine;
 
 public class PlayerWeapon : MonoBehaviour
 {
-	[SerializeField] private Weapon equippedWeapon;
-	[SerializeField] private PlayerTargetFinder targetFinder;
+    [SerializeField] private Weapon currWeapon;
+    [SerializeField] private PlayerTargetFinder targetFinder;
 
-	private float timer;
+    private PlayerBase playerBase;
+    private Transform target;
+    private float timer;
 
-	private Transform target;
+    private void Awake()
+    {
+        playerBase = GetComponentInParent<PlayerBase>();
+    }
 
-	private void Update()
-	{
-		timer += Time.deltaTime;
+    private void Update()
+    {
+        timer += Time.deltaTime;
 
-		if (timer > equippedWeapon.FireCooldown)
-		{
-			UpdateTarget();
-			if (target == null) { return; }
+        if (timer > currWeapon.FireCooldown)
+        {
+            UpdateTarget();
+            if (target == null) { return; }
 
-			equippedWeapon.ShootAt(transform.position, target);
-			timer = 0f;
-		}
-	}
+            for (int i = 0; i < currWeapon.Projectiles; i++)
+            {
+                currWeapon.ShootAt(GenerateBulletSpawnPosOffset(i, currWeapon.Projectiles), target);
+                timer = 0f;
+            }
+        }
+    }
 
-	public void UpdateTarget()
-	{
-		target = targetFinder.FindClosestTarget();
-	}
+    public void UpdateTarget()
+    {
+        target = targetFinder.FindClosestTarget();
+    }
 
+    public Vector3 GenerateBulletSpawnPosOffset(int bulletNum, int totalBullets)
+    {
+        Vector3 dir = transform.position - target.position;
+        float degrees = ((Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg) - 180f) % 360f;
+
+        if (totalBullets > 1)
+        {
+            float increment = currWeapon.BulletSpread / (totalBullets - 1);
+
+            degrees -= (currWeapon.BulletSpread / 2);
+            degrees += (bulletNum * increment);
+        }
+
+        float radians = degrees * Mathf.Deg2Rad;
+        float x = Mathf.Cos(radians);
+        float y = Mathf.Sin(radians);
+
+        return new Vector3(x, y, 0) + transform.position;
+    }
 }
