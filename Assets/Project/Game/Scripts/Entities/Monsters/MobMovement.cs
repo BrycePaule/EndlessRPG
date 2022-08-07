@@ -27,15 +27,14 @@ public class MobMovement : MonoBehaviour
     {
         if (!moving) { return; }
 
+        mobBase.transform.position = Vector3.Lerp(moveStartPos, moveEndPos, moveTime);
+        moveTime += (Time.deltaTime / (GlobalSettings.EntityMoveTime * Time.timeScale));
+
         if (moveTime >= 1f)
         {
             moving = false;
             moveTime = 0f;
-        }
-        else
-        {
-            mobBase.transform.position = Vector3.Lerp(moveStartPos, moveEndPos, moveTime);
-            moveTime += (Time.deltaTime / (GlobalSettings.EntityMoveTime * Time.timeScale));
+            mobBase.transform.position = Utils.CentrePosOnTile(mobBase.transform.position);
         }
     }
 
@@ -46,8 +45,6 @@ public class MobMovement : MonoBehaviour
         moveStartPos = mobBase.transform.position;
         moveEndPos = CalcNextMovePoint();
         moving = true;
-
-        // mobBase.transform.position += CalcMoveDir() * 2;
     }
 
     private Vector3 CalcNextMovePoint()

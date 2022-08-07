@@ -13,6 +13,9 @@ public static class GlobalSettings
     // in seconds
     public static float PlayerHitTimer = 1f; 
 
+    // MAP
+    public static float TilemapScale = 2f;
+
     // LAYERS
     public static int PlayerLayerIndex = 8;
     public static int MonsterLayerIndex = 9;

@@ -31,15 +31,14 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!moving) { return; }
 
+        playerBase.transform.position = Vector3.Lerp(moveStartPos, moveEndPos, moveTime);
+        moveTime += (Time.deltaTime / (GlobalSettings.EntityMoveTime * Time.timeScale));
+
         if (moveTime >= 1f)
         {
             moving = false;
             moveTime = 0f;
-        }
-        else
-        {
-            playerBase.transform.position = Vector3.Lerp(moveStartPos, moveEndPos, moveTime);
-            moveTime += (Time.deltaTime / (GlobalSettings.EntityMoveTime * Time.timeScale));
+            playerBase.transform.position = Utils.CentrePosOnTile(playerBase.transform.position);
         }
     }
 
