@@ -156,6 +156,7 @@ Transform:
   - {fileID: 689390171}
   - {fileID: 1693326020}
   - {fileID: 482748353}
+  - {fileID: 438876794}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -577,6 +578,51 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &438876793
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 438876794}
+  - component: {fileID: 438876795}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &438876794
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 438876793}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 41568978}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &438876795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 438876793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172616a89cf3aff4fa3a5bb224a3a926, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1261464196}
+  playerWeapon: {fileID: 1550312896}
 --- !u!1 &473373373
 GameObject:
   m_ObjectHideFlags: 0
@@ -2692,7 +2738,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -20}
+  m_AnchoredPosition: {x: 0, y: -30}
   m_SizeDelta: {x: 40, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1435967084
@@ -3323,16 +3369,17 @@ MonoBehaviour:
   Player: {fileID: 1261464196}
   canvas: {fileID: 863379263}
   possibleUpgrades:
+  - {fileID: 11400000, guid: e1ecc461f638506459903cb0f5af57e8, type: 2}
+  - {fileID: 11400000, guid: 360f781b199b8584ca28a45cf3092a65, type: 2}
+  - {fileID: 11400000, guid: 3da0d6186ac18b046a213bb935caefd7, type: 2}
+  - {fileID: 11400000, guid: fdadf2ad6a344234d9908513dc3fa3e3, type: 2}
+  - {fileID: 11400000, guid: 89cdd59654897384bba043a33ca00752, type: 2}
+  - {fileID: 11400000, guid: bce620151bcae8d47baf94d916cf7217, type: 2}
+  - {fileID: 11400000, guid: d5fd725c333ef0e45900ed7d27dc7d9e, type: 2}
+  - {fileID: 11400000, guid: efd2524fd78d11349a4824c5699823ff, type: 2}
   - {fileID: 11400000, guid: b45a95bc50a214f418366aec763cd96e, type: 2}
-  - {fileID: 11400000, guid: 831c350ac61efb64a8538f600204467e, type: 2}
-  - {fileID: 11400000, guid: af1ea45fb507cbd44ae26e3a607528a7, type: 2}
-  - {fileID: 11400000, guid: f752314cd82c5dc4c859a3b81c5eb8b6, type: 2}
-  - {fileID: 11400000, guid: 59264efa850a59e44851aee4535b9e34, type: 2}
-  - {fileID: 11400000, guid: e8c25f808e5ad7947ab2831ccda9fc32, type: 2}
-  - {fileID: 11400000, guid: d9532d8c0ca8b9a4ab1f356ceaa86d4a, type: 2}
-  - {fileID: 11400000, guid: b52c46a7224b60740acfd5ec83e4ffc0, type: 2}
-  - {fileID: 11400000, guid: 8a05103519d6b6e41a3585b468c11ee1, type: 2}
-  - {fileID: 11400000, guid: 40f7d79c32c932b458d2a61e90a5466a, type: 2}
+  - {fileID: 11400000, guid: b86fc253aa6101443b711ae6ab4df872, type: 2}
+  - {fileID: 11400000, guid: 1527849ad426b5d46aa3fc42ad26de67, type: 2}
 --- !u!114 &1683807974
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3607,10 +3654,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: UpgradeSlot
       objectReference: {fileID: 0}
-    - target: {fileID: 8784787448234477475, guid: 80ad72956ea53be4889d86a1ca60a5c4, type: 3}
-      propertyPath: Upgrade
-      value: 
-      objectReference: {fileID: 11400000, guid: b45a95bc50a214f418366aec763cd96e, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 80ad72956ea53be4889d86a1ca60a5c4, type: 3}
 --- !u!224 &1767275957 stripped

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 556a9c308e0ce3c449bef5a2e81401bd, type: 3}
   m_Name: PlayerStats
   m_EditorClassIdentifier: 
-  MaxHealth: 100
-  MovementSpeed: 1.21
-  PickupRadius: 20.886242
+  MaxHealth: 10
+  MovementSpeed: 1
+  PickupRadius: 5

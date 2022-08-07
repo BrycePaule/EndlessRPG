@@ -12,12 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6ba308af69e44345bb211c77103b49c, type: 3}
   m_Name: Pistol
   m_EditorClassIdentifier: 
-  StepsToShoot: 2
+  StepsToShoot: 3
   Damage: 1
+  Spread: 45
+  Lifetime: 5
   Projectiles: 1
-  BulletSpread: 40
-  SizeMultiplier: 1
-  TravelSpeed: 1.3
-  BulletLife: 3
+  Chain: 1
+  Pierce: 1
+  SizeMulti: 1
+  SpeedMulti: 1.3
   TravelStyle: 1
   BulletPrefab: {fileID: 3258009909095331399, guid: 892a0bd7f134ce345bab49ad9ad54aca, type: 3}

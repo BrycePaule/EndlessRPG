@@ -30,9 +30,9 @@ public class PlayerWeapon : MonoBehaviour
 
         if (totalBullets > 1)
         {
-            float increment = currWeapon.BulletSpread / (totalBullets - 1);
+            float increment = currWeapon.Spread / (totalBullets - 1);
 
-            degrees -= (currWeapon.BulletSpread / 2);
+            degrees -= (currWeapon.Spread / 2);
             degrees += (bulletNum * increment);
         }
 

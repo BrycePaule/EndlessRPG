@@ -25,8 +25,6 @@ public class InputHandler : MonoBehaviour
         PlayerInput _playerInput = new PlayerInput();
         _playerInput.Enable();
 
-        // _movement = _playerInput.Player.Movement;
-
         moveUp = _playerInput.Player.MoveUp;
         moveDown = _playerInput.Player.MoveDown;
         moveLeft = _playerInput.Player.MoveLeft;
@@ -37,17 +35,6 @@ public class InputHandler : MonoBehaviour
         moveLeft.performed += ctx => OnMoveLeft();
         moveRight.performed += ctx => OnMoveRight();
     }
-
-    // private void FixedUpdate()
-    // {
-    //     HandlePlayerMovement();
-    // }
-
-    // private void HandlePlayerMovement()
-    // {
-    //     Vector2 dir = movement.ReadValue<Vector2>();
-    //     playerMovement.Move(dir);
-    // }
 
     private void OnMoveUp() => playerMovement.Move(Direction.Up);
     private void OnMoveDown() => playerMovement.Move(Direction.Down);

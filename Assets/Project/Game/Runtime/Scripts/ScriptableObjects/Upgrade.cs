@@ -8,36 +8,61 @@ public class Upgrade : ScriptableObject
     public string UpgradeText;
     public Sprite Sprite;
 
-    [Header("Player Stats")]
-    public float MovementSpeedMultiplier = 1f;
-    public float PickupRadiusMultipler = 1f;
-    public float HealthMultipler = 1f;
+    [Header("Flat", order = 0)]
 
+    [Header("Player", order = 1)]
+    public int Health = 0;
+    public int PickupRadius = 0;
 
-    [Header("Weapon Stats")]
-    public float WeaponDamageMultiplier = 1f;
-    public int WeaponDamageIncrease = 0;
+    [Header("Weapon", order = 1)]
+    public int Damage = 0;
+    public int Cooldown = 0;
+    public int Spread = 0;
     public int BonusProjectiles = 0;
+    public int Chain = 0;
+    public int Pierce = 0;
+    public float BulletLife = 0;
 
-    public float BulletSpreadMultipler = 1f;
-    public float BulletSizeMultiplier = 1f;
-    public float BulletTravelSpeedMultiplier = 1f;
-    public float BulletLifeMultipler = 1f;
+    [Space(20, order = 2)]
+
+    [Header("Multi", order = 2)]
+
+    [Header("Player", order = 3)]
+    // public float MovementSpeedMultiplier = 1f;
+
+    [Header("Weapon", order = 3)]
+    public float BulletSpeedMultiplier =- 1f;
+    public float SizeMultiplier = 1f;
+
 
     public void Apply(PlayerStats pStats, Weapon weapon)
     {
-        pStats.MovementSpeed *= MovementSpeedMultiplier;
-        pStats.PickupRadius *= PickupRadiusMultipler;
-        pStats.MaxHealth *= Mathf.FloorToInt(pStats.MaxHealth * HealthMultipler);
+        // PLAYER
+        // Multipliers
+        // pStats.MovementSpeed *= MovementSpeedMultiplier;
 
-        weapon.Damage *= Mathf.FloorToInt(weapon.Damage * WeaponDamageMultiplier);
-        weapon.Damage += WeaponDamageIncrease;
+        // Flat
+        pStats.MaxHealth += Health;
+        pStats.PickupRadius += PickupRadius;
+
+        // WEAPON
+        // Multipliers
+        weapon.SpeedMulti *= BulletSpeedMultiplier;
+        weapon.SizeMulti *= SizeMultiplier;
+
+        // Flat
+        weapon.Damage += Damage;
+        weapon.Spread += Spread;
         weapon.Projectiles += BonusProjectiles;
+        weapon.Chain += Chain;
+        weapon.Pierce += Pierce;
+        weapon.Lifetime += BulletLife;
 
-        weapon.BulletSpread *= BulletSpreadMultipler;
-        weapon.SizeMultiplier *= BulletSizeMultiplier;
-        weapon.TravelSpeed *= BulletTravelSpeedMultiplier;
-        weapon.BulletLife *= BulletLifeMultipler;
+        weapon.StepsToShoot = Mathf.Max(1, weapon.StepsToShoot - Cooldown);
+
     }
+
+    // IDEAS
+    // knockback, pierce, ammo + reload mechanic?
 
 }

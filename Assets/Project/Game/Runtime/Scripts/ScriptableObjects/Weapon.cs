@@ -9,14 +9,17 @@ public class Weapon : ScriptableObject
 
     [Header("Bullet Settings")]
     public int Damage;
+    public float Spread;
+    public float Lifetime;  // time in seconds
+
     public int Projectiles;
-    public float BulletSpread;
-    public float SizeMultiplier;
-    public float TravelSpeed;
-    public float BulletLife;  // time in seconds
+    public int Chain;
+    public int Pierce;
+
+    public float SizeMulti;
+    public float SpeedMulti;
 
     public BulletTravelStyle TravelStyle;
-
 
     [Header("References")]
     public GameObject BulletPrefab;
@@ -27,15 +30,18 @@ public class Weapon : ScriptableObject
         float angle = Mathf.Atan2(dirVector.y, dirVector.x) * Mathf.Rad2Deg;
 
         GameObject _bulletObj = Instantiate(BulletPrefab, from, Quaternion.AngleAxis(angle, Vector3.forward));
-        _bulletObj.transform.localScale *= SizeMultiplier;
+        _bulletObj.transform.localScale *= SizeMulti;
 
         Bullet _bullet = _bulletObj.GetComponent<Bullet>();
         _bullet.Target = target;
         _bullet.Damage = Damage;
+        _bullet.TravelSpeed = SpeedMulti;
+
         _bullet.Projectiles = Projectiles;
-        _bullet.SizeMultiplier = SizeMultiplier;
-        _bullet.TravelSpeed = TravelSpeed;
-        _bullet.BulletLife = BulletLife;
+        _bullet.Chain = Chain;
+        _bullet.Pierce = Pierce;
+
+        _bullet.BulletLife = Lifetime;
         _bullet.TravelStyle = TravelStyle;
     }
 }

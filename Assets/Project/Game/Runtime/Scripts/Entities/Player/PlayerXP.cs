@@ -53,7 +53,8 @@ public class PlayerXP : MonoBehaviour
     {
         Level += 1; 
         currentXP = currentXP % NextLevelXP;
-        NextLevelXP = (int) (NextLevelXP * DifficultySettings.PlayerXPScalar);
+        NextLevelXP = Mathf.RoundToInt(NextLevelXP * DifficultySettings.PlayerXPScalar);
+        UpdateXPBar();
 
         eLevelUp?.Raise(Level);
     }

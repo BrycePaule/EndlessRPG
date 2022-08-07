@@ -9,16 +9,18 @@ public class Bullet : MonoBehaviour
 
     public int Damage;
     public int Projectiles;
+    public float BulletLife;
+    public int Chain;
+    public int Pierce;
 
-    public float SizeMultiplier;
     public float TravelSpeed;
 
-    public float BulletLife;
     public BulletTravelStyle TravelStyle;
 
     private float destructTimer;
     private float moveTime;
     private bool moving;
+    private int hits;
 
     private Vector3 dirVector;
     private Vector3 moveStartPos;
@@ -28,6 +30,7 @@ public class Bullet : MonoBehaviour
     {
         moveTime = 0f;
         moving = false;
+        hits = 0;
     }
 
     private void Start()
@@ -86,7 +89,14 @@ public class Bullet : MonoBehaviour
         if (other.gameObject.layer == GlobalSettings.MonsterLayerIndex)
         {
             other.gameObject.GetComponentInParent<MobBase>().GetComponentInChildren<MobHealth>().Damage(Damage);
-            Destroy(gameObject);
+            hits += 1;
+
+            if (hits >= Pierce)
+                Destroy(gameObject);
+
+            // if (hits > Chain)
+            //     Destroy(gameObject);
         }
+
     }
 }
