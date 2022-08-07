@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: eTurnEnd
   m_EditorClassIdentifier: 
   listeners: []
-  LogToConsole: 1
+  LogToConsole: 0

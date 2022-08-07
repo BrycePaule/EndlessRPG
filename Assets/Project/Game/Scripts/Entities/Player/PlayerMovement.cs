@@ -7,12 +7,14 @@ public class PlayerMovement : MonoBehaviour
 
     private PlayerBase playerBase;
     private PlayerStats playerStats;
+    private Animator playerAnimator;
 
     [SerializeField] private GameEvent_Int eTurnEnd;
 
     private void Awake()
     {
         playerBase = GetComponentInParent<PlayerBase>();
+        playerAnimator = playerBase.GetComponentInChildren<Animator>();
         playerStats = playerBase.StatsAsset;
     }
 
@@ -24,28 +26,30 @@ public class PlayerMovement : MonoBehaviour
 
     public void Move(Direction direction)
     {
+        playerAnimator.ResetTrigger("Move");
+
         switch (direction)
         {
             case (Direction.Up):
                 playerBase.transform.position += Vector3.up * playerStats.MovementSpeed;
-                eTurnEnd?.Raise(-1);
                 break;
 
             case (Direction.Down):
                 playerBase.transform.position += Vector3.down * playerStats.MovementSpeed;
-                eTurnEnd?.Raise(-1);
                 break;
 
             case (Direction.Left):
                 playerBase.transform.position += Vector3.left * playerStats.MovementSpeed;
-                eTurnEnd?.Raise(-1);
                 break;
 
             case (Direction.Right):
                 playerBase.transform.position += Vector3.right * playerStats.MovementSpeed;
-                eTurnEnd?.Raise(-1);
                 break;
         }
+
+        eTurnEnd?.Raise(-1);
+        playerAnimator.SetTrigger("Move");
+
     }
 
     // public void MoveUp() => playerBase.transform.position += Vector3.up * playerStats.MovementSpeed;
