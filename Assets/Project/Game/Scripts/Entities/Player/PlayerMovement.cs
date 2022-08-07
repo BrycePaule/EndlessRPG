@@ -32,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
         if (!moving) { return; }
 
         playerBase.transform.position = Vector3.Lerp(moveStartPos, moveEndPos, moveTime);
-        moveTime += (Time.deltaTime / (GlobalSettings.EntityMoveTime * Time.timeScale));
+        moveTime += (Time.deltaTime / GlobalSettings.EntityMoveTime);
 
         if (moveTime >= 1f)
         {

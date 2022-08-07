@@ -28,7 +28,7 @@ public class MobMovement : MonoBehaviour
         if (!moving) { return; }
 
         mobBase.transform.position = Vector3.Lerp(moveStartPos, moveEndPos, moveTime);
-        moveTime += (Time.deltaTime / (GlobalSettings.EntityMoveTime * Time.timeScale));
+        moveTime += (Time.deltaTime / GlobalSettings.EntityMoveTime);
 
         if (moveTime >= 1f)
         {

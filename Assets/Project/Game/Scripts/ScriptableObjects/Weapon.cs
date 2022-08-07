@@ -11,8 +11,7 @@ public enum TravelStyle
 [CreateAssetMenu(menuName = "ScriptableObjects/Weapon", fileName = "New Weapon")]
 public class Weapon : ScriptableObject
 {
-    // delay in seconds
-    public float FireCooldown;
+    public int StepsToShoot; // in number of steps
 
     [Header("Bullet Settings")]
     public int Damage;

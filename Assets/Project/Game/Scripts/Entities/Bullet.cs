@@ -16,7 +16,7 @@ public class Bullet : MonoBehaviour
     public float BulletLife;
     public TravelStyle TravelStyle;
 
-    private float timer;
+    private float destructTimer;
 
     private Vector3 dirVector;
 
@@ -28,8 +28,8 @@ public class Bullet : MonoBehaviour
 
     private void FixedUpdate()
     {
-        timer += Time.deltaTime;
-        if (timer >= BulletLife) { Destroy(gameObject); }
+        destructTimer += Time.deltaTime;
+        if (destructTimer >= BulletLife) { Destroy(gameObject); }
 
         if (TravelStyle == TravelStyle.Target)
         {
@@ -43,6 +43,16 @@ public class Bullet : MonoBehaviour
     private void Move()
     {
         transform.position += dirVector * (TravelSpeed * GlobalSettings.TravelSpeedScalar);
+
+        // transform.position = Vector3.Lerp(moveStartPos, moveEndPos, moveTime);
+        // moveTime += (Time.deltaTime / GlobalSettings.EntityMoveTime);
+
+        // if (moveTime >= 1f)
+        // {
+        //     moving = false;
+        //     moveTime = 0f;
+        //     playerBase.transform.position = Utils.CentrePosOnTile(playerBase.transform.position);
+        // }
     }
 
     private void UpdateDirection()

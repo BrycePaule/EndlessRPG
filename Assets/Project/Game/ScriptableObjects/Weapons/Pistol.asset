@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Pistol
   m_EditorClassIdentifier: 
   FireCooldown: 2
-  Damage: 10
+  Damage: 5
   Projectiles: 3
   BulletSpread: 40
   SizeMultiplier: 1
   TravelSpeed: 100
   BulletLife: 3
-  TravelStyle: 0
+  TravelStyle: 1
   BulletPrefab: {fileID: 3258009909095331399, guid: 892a0bd7f134ce345bab49ad9ad54aca, type: 3}

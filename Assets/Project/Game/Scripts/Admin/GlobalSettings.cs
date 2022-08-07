@@ -4,14 +4,10 @@ using UnityEngine;
 
 public static class GlobalSettings
 {
+    public static float TravelSpeedScalar = 0.0005f;
 
-    public static float TravelSpeedScalar = 0.002f;
-
-    // in seconds
-    public static float EntityMoveTime = 0.2f;
-
-    // in seconds
-    public static float PlayerHitTimer = 1f; 
+    public static float EntityMoveTime = .2f; // in seconds
+    public static float PlayerHitTimer = 1f; // in seconds
 
     // MAP
     public static float TilemapScale = 2f;

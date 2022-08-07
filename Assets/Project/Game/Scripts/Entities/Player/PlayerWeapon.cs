@@ -11,26 +11,12 @@ public class PlayerWeapon : MonoBehaviour
     private Transform target;
     private float timer;
 
+    private int shootCounter;
+
     private void Awake()
     {
         playerBase = GetComponentInParent<PlayerBase>();
-    }
-
-    private void Update()
-    {
-        timer += Time.deltaTime;
-
-        if (timer > currWeapon.FireCooldown)
-        {
-            UpdateTarget();
-            if (target == null) { return; }
-
-            for (int i = 0; i < currWeapon.Projectiles; i++)
-            {
-                currWeapon.Shoot(GenerateBulletSpawnPosOffset(i, currWeapon.Projectiles), target);
-                timer = 0f;
-            }
-        }
+        shootCounter = 0;
     }
 
     public void UpdateTarget()
@@ -56,5 +42,23 @@ public class PlayerWeapon : MonoBehaviour
         float y = Mathf.Sin(radians);
 
         return new Vector3(x, y, 0) + transform.position;
+    }
+
+    public void Shoot()
+    {
+        shootCounter += 1;
+
+        if (shootCounter >= currWeapon.StepsToShoot)
+        {
+            UpdateTarget();
+            if (target == null) { return; }
+
+            for (int i = 0; i < currWeapon.Projectiles; i++)
+            {
+                currWeapon.Shoot(GenerateBulletSpawnPosOffset(i, currWeapon.Projectiles), target);
+            }
+
+            shootCounter = 0;
+        }
     }
 }
