@@ -15,12 +15,16 @@ public class MobMovement : MonoBehaviour
     private Vector3 moveStartPos;
     private Vector3 moveEndPos;
 
+    private int turnCounter;
+
     private void Awake()
     {
         mobBase = GetComponentInParent<MobBase>();
         stats = mobBase.StatsAsset;
+        turnCounter = stats.TurnsToMove;
 
         moveTime = 0f;
+        turnCounter = 0;
     }
 
     private void Update()
@@ -35,16 +39,22 @@ public class MobMovement : MonoBehaviour
             moving = false;
             moveTime = 0f;
             mobBase.transform.position = Utils.CentrePosOnTile(mobBase.transform.position);
+            turnCounter = 0;
         }
     }
 
     public void Move()
     {
         if (moving) { return; }
+        turnCounter += 1;
+
+        if (turnCounter >= stats.TurnsToMove)
+        {
+            moving = true;
+        }
 
         moveStartPos = mobBase.transform.position;
         moveEndPos = CalcNextMovePoint();
-        moving = true;
     }
 
     private Vector3 CalcNextMovePoint()

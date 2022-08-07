@@ -22,26 +22,46 @@ public class Weapon : ScriptableObject
     public BulletTravelStyle TravelStyle;
 
     [Header("References")]
-    public GameObject BulletPrefab;
+    [SerializeField] private GameObject BulletPrefab;
 
-    public void Shoot(Vector3 from, Transform target)
+    public void Shoot(Vector3 shooterPos, Vector3 initPos)
     {
-        Vector3 dirVector = (from - target.transform.position).normalized;
+        Vector3 dirVector = (initPos - shooterPos).normalized;
         float angle = Mathf.Atan2(dirVector.y, dirVector.x) * Mathf.Rad2Deg;
 
-        GameObject _bulletObj = Instantiate(BulletPrefab, from, Quaternion.AngleAxis(angle, Vector3.forward));
+        GameObject _bulletObj = Instantiate(BulletPrefab, initPos, Quaternion.AngleAxis(angle, Vector3.forward));
         _bulletObj.transform.localScale *= SizeMulti;
 
         Bullet _bullet = _bulletObj.GetComponent<Bullet>();
+        InitBulletStats(_bullet);
+
+        _bullet.DirVector = dirVector;
+    }
+
+    public void ShootHoming(Vector3 initPos, Transform target)
+    {
+        Vector3 dirVector = (initPos - target.transform.position).normalized;
+        float angle = Mathf.Atan2(dirVector.y, dirVector.x) * Mathf.Rad2Deg;
+
+        GameObject _bulletObj = Instantiate(BulletPrefab, initPos, Quaternion.AngleAxis(angle, Vector3.forward));
+        _bulletObj.transform.localScale *= SizeMulti;
+
+        Bullet _bullet = _bulletObj.GetComponent<Bullet>();
+        InitBulletStats(_bullet);
+
         _bullet.Target = target;
-        _bullet.Damage = Damage;
-        _bullet.TravelSpeed = SpeedMulti;
+    }
 
-        _bullet.Projectiles = Projectiles;
-        _bullet.Chain = Chain;
-        _bullet.Pierce = Pierce;
+    private void InitBulletStats(Bullet _b)
+    {
+        _b.Damage = Damage;
+        _b.TravelSpeed = SpeedMulti;
 
-        _bullet.BulletLife = Lifetime;
-        _bullet.TravelStyle = TravelStyle;
+        _b.Projectiles = Projectiles;
+        _b.Chain = Chain;
+        _b.Pierce = Pierce;
+
+        _b.BulletLife = Lifetime;
+        _b.TravelStyle = TravelStyle;
     }
 }

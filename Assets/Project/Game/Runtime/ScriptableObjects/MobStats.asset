@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: MobStats
   m_EditorClassIdentifier: 
   MaxHealth: 5
-  MovementSpeed: 2
+  TurnsToMove: 2
   CollisionDamage: 1
   Bounciness: 0

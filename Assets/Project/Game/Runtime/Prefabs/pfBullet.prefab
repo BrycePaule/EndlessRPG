@@ -101,9 +101,10 @@ MonoBehaviour:
   Target: {fileID: 0}
   Damage: 0
   Projectiles: 0
-  SizeMultiplier: 0
-  TravelSpeed: 0
   BulletLife: 0
+  Chain: 0
+  Pierce: 0
+  TravelSpeed: 0
   TravelStyle: 0
 --- !u!61 &565422232687133054
 BoxCollider2D:

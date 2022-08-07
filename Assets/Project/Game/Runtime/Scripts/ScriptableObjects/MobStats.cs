@@ -7,7 +7,7 @@ public class MobStats : ScriptableObject
 {
 
     public int MaxHealth;
-    public float MovementSpeed;
+    public int TurnsToMove;
 
     public int CollisionDamage;
     

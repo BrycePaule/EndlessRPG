@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: PlayerStats
   m_EditorClassIdentifier: 
   MaxHealth: 10
-  MovementSpeed: 1
+  TurnsToMove: 1
   PickupRadius: 5

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-
     public Transform Target;
 
     public int Damage;
@@ -16,13 +15,13 @@ public class Bullet : MonoBehaviour
     public float TravelSpeed;
 
     public BulletTravelStyle TravelStyle;
+    public Vector3 DirVector;
 
     private float destructTimer;
     private float moveTime;
     private bool moving;
     private int hits;
 
-    private Vector3 dirVector;
     private Vector3 moveStartPos;
     private Vector3 moveEndPos;
 
@@ -47,14 +46,11 @@ public class Bullet : MonoBehaviour
 
         if (!moving) { return; }
 
-        if (TravelStyle == BulletTravelStyle.Homing)
-        {
-            UpdateDirection();
-            UpdateRotation();
-        }
+        UpdateDirection();
+        UpdateRotation();
 
         moveTime += (Time.deltaTime / GlobalSettings.EntityMoveTime);
-        transform.position = Vector3.Lerp(moveStartPos, moveStartPos + (dirVector * TravelSpeed), moveTime);
+        transform.position = Vector3.Lerp(moveStartPos, moveStartPos + (DirVector * TravelSpeed), moveTime);
 
         if (moveTime >= 1f)
         {
@@ -73,14 +69,12 @@ public class Bullet : MonoBehaviour
     {
         if (Target == null) { return; }
 
-        dirVector = (Target.transform.position - transform.position).normalized;
+        DirVector = (Target.transform.position - transform.position).normalized;
     }
 
     private void UpdateRotation()
     {
-        if (Target == null) { return; }
-
-        float angleInDegrees = Mathf.Atan2(dirVector.y, dirVector.x) * Mathf.Rad2Deg;
+        float angleInDegrees = Mathf.Atan2(DirVector.y, DirVector.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(angleInDegrees, Vector3.forward);
     }
 

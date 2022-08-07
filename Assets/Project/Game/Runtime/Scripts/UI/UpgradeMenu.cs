@@ -44,9 +44,12 @@ public class UpgradeMenu : MonoBehaviour
 
     private void RollUpgrades()
     {
+        System.Random r = new System.Random();
+        List<int> choices = Enumerable.Range(0, possibleUpgrades.Count).OrderBy(x => r.Next()).Take(3).ToList();
+
         for (int i = 0; i < upgradeChoices; i++)
         {
-            upgradeSlots[i].Upgrade = possibleUpgrades[Random.Range(0, possibleUpgrades.Count - 1)];
+            upgradeSlots[i].Upgrade = possibleUpgrades[choices[i]];
         }
     }
 }

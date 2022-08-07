@@ -54,9 +54,19 @@ public class PlayerWeapon : MonoBehaviour
 
             for (int i = 0; i < currWeapon.Projectiles; i++)
             {
-                currWeapon.Shoot(GenerateBulletSpawnPosOffset(i, currWeapon.Projectiles), target);
-            }
+                Vector3 bulletInitOffset = GenerateBulletSpawnPosOffset(i, currWeapon.Projectiles);
 
+                switch (currWeapon.TravelStyle)
+                {
+                    case (BulletTravelStyle.Homing):
+                        currWeapon.ShootHoming(bulletInitOffset, target);
+                        break;
+                    
+                    default:
+                        currWeapon.Shoot(transform.position, bulletInitOffset);
+                        break;
+                }
+            }
             stepCounter = 0;
         }
     }
