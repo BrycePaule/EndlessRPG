@@ -9,6 +9,8 @@ public static class GlobalSettings
     public static float EntityMoveTime = .3f; // in seconds
     public static float PlayerHitTimer = 1f; // in seconds
 
+    public static float ExperienceMultiplier = 5f;
+
     // MAP
     public static float TilemapScale = 2f;
 

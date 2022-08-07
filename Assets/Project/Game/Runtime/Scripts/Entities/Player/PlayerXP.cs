@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class PlayerXP : MonoBehaviour
 {
     [SerializeField] private Slider xpBar;
+    [SerializeField] private GameEvent_Int eLevelUp;
 
     public int Level;
     public int currentXP;
@@ -29,9 +30,7 @@ public class PlayerXP : MonoBehaviour
 
         if (currentXP >= NextLevelXP) 
         { 
-            Level += 1; 
-            currentXP = currentXP % NextLevelXP;
-            NextLevelXP = (int) (NextLevelXP * DifficultySettings.PlayerXPScalar);
+            LevelUp();
         }
 
         UpdateXPBar();
@@ -48,6 +47,15 @@ public class PlayerXP : MonoBehaviour
     {
         xpBar.value = currentXP;
         xpBar.maxValue = NextLevelXP;
+    }
+
+    public void LevelUp()
+    {
+        Level += 1; 
+        currentXP = currentXP % NextLevelXP;
+        NextLevelXP = (int) (NextLevelXP * DifficultySettings.PlayerXPScalar);
+
+        eLevelUp?.Raise(Level);
     }
 
 }

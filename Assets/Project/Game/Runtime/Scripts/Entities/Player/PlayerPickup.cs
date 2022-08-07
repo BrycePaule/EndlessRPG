@@ -31,7 +31,7 @@ public class PlayerPickup : MonoBehaviour
     {
         if (other.gameObject.layer == GlobalSettings.PickupsLayerIndex)
         {
-            playerBase.GetComponentInChildren<PlayerXP>().CollectXP(10);
+            playerBase.GetComponentInChildren<PlayerXP>().CollectXP(Mathf.FloorToInt(10 * GlobalSettings.ExperienceMultiplier));
             Destroy(other.gameObject);
         }
     }

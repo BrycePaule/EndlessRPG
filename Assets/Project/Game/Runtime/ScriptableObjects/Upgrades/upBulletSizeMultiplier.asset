@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f21f0dfa1d6700e48a71375a0ac4d978, type: 3}
+  m_Name: upBulletSizeMultiplier
+  m_EditorClassIdentifier: 
+  UpgradeText: Bullet Size
+  Sprite: {fileID: 21300000, guid: 218dd867f061de64d9319f232d967576, type: 3}
+  MovementSpeedMultiplier: 1
+  PickupRadiusMultipler: 1
+  HealthMultipler: 1
+  WeaponDamageMultiplier: 1
+  WeaponDamageIncrease: 0
+  BonusProjectiles: 0
+  BulletSpreadMultipler: 1
+  BulletSizeMultiplier: 1.1
+  BulletTravelSpeedMultiplier: 1
+  BulletLifeMultipler: 1

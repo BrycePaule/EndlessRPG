@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerWeapon : MonoBehaviour
 {
-    [SerializeField] private Weapon currWeapon;
+    [SerializeField] public Weapon currWeapon;
     [SerializeField] private PlayerTargetFinder targetFinder;
 
     private PlayerBase playerBase;
