@@ -14,50 +14,62 @@ public class Bullet : MonoBehaviour
     public float TravelSpeed;
 
     public float BulletLife;
-    public TravelStyle TravelStyle;
+    public BulletTravelStyle TravelStyle;
 
     private float destructTimer;
+    private float moveTime;
+    private bool moving;
 
     private Vector3 dirVector;
+    private Vector3 moveStartPos;
+    private Vector3 moveEndPos;
+
+    private void Awake()
+    {
+        moveTime = 0f;
+        moving = false;
+    }
 
     private void Start()
     {
         UpdateDirection();
         UpdateRotation();
+        Move();
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         destructTimer += Time.deltaTime;
         if (destructTimer >= BulletLife) { Destroy(gameObject); }
 
-        if (TravelStyle == TravelStyle.Target)
+        if (!moving) { return; }
+
+        if (TravelStyle == BulletTravelStyle.Homing)
         {
             UpdateDirection();
             UpdateRotation();
         }
-        
-        Move();
+
+        moveTime += (Time.deltaTime / GlobalSettings.EntityMoveTime);
+        transform.position = Vector3.Lerp(moveStartPos, moveStartPos + (dirVector * TravelSpeed), moveTime);
+
+        if (moveTime >= 1f)
+        {
+            moving = false;
+            moveTime = 0f;
+        }
     }
 
-    private void Move()
+    public void Move()
     {
-        transform.position += dirVector * (TravelSpeed * GlobalSettings.TravelSpeedScalar);
-
-        // transform.position = Vector3.Lerp(moveStartPos, moveEndPos, moveTime);
-        // moveTime += (Time.deltaTime / GlobalSettings.EntityMoveTime);
-
-        // if (moveTime >= 1f)
-        // {
-        //     moving = false;
-        //     moveTime = 0f;
-        //     playerBase.transform.position = Utils.CentrePosOnTile(playerBase.transform.position);
-        // }
+        moveStartPos = transform.position;
+        moving = true;
     }
 
     private void UpdateDirection()
     {
         if (Target == null) { return; }
+
         dirVector = (Target.transform.position - transform.position).normalized;
     }
 

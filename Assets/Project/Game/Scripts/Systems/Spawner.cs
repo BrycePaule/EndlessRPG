@@ -13,33 +13,23 @@ public class Spawner : MonoBehaviour
     // [SerializeField] private GameObject monster3;
 
     [Header("Settings")]
-    public float MinSpawnDistanceFromPlayer;
-    public float MaxSpawnDistanceFromPlayer;
+    public int MinSpawnTilesFromPlayer;
+    public int MaxSpawnTilesFromPlayer;
 
-    [Header("Timer")]
-    [SerializeField] private float spawnIncrement;
-    private float timer;
+    public int minEnemies;
+    public int maxEnemies;
 
-
-    private void Update()
-    {
-        timer += Time.deltaTime;
-
-        if (timer > spawnIncrement)
-        {
-            Instantiate(monster1, SelectSpawnPos(), Quaternion.identity, MonsterContainer);
-            timer = 0f;
-        }
-    }
+    private int stepCounter;
+    private int enemyCount;
 
     private Vector3 SelectSpawnPos()
     {
-        int distX = (int) Random.Range(MinSpawnDistanceFromPlayer * GlobalSettings.TilemapScale, MaxSpawnDistanceFromPlayer * GlobalSettings.TilemapScale);
-        int distY = (int) Random.Range(MinSpawnDistanceFromPlayer * GlobalSettings.TilemapScale, MaxSpawnDistanceFromPlayer * GlobalSettings.TilemapScale);
+        int distX = Mathf.RoundToInt(Random.Range(MinSpawnTilesFromPlayer, MaxSpawnTilesFromPlayer) * GlobalSettings.TilemapScale);
+        int distY = Mathf.RoundToInt(Random.Range(MinSpawnTilesFromPlayer, MaxSpawnTilesFromPlayer) * GlobalSettings.TilemapScale);
 
         return new Vector3(
-            (Roll(50) ? player.transform.position.x + distX : player.transform.position.x - distX),
-            (Roll(50) ? player.transform.position.y + distY : player.transform.position.y - distY),
+            Roll(50) ? player.transform.position.x + distX : player.transform.position.x - distX,
+            Roll(50) ? player.transform.position.y + distY : player.transform.position.y - distY,
             0
         );
     }
@@ -50,6 +40,33 @@ public class Spawner : MonoBehaviour
         float roll = Random.Range(0, 100);
 
         return roll <= chance;
+    }
+
+    public void Spawn()
+    {
+        Instantiate(monster1, SelectSpawnPos(), Quaternion.identity, MonsterContainer);
+    }
+
+    public void SpawnRound()
+    {
+        UpdateEnemyCount();
+
+        if (enemyCount < minEnemies)
+        {
+            Spawn();
+        }
+    }
+
+    private void UpdateEnemyCount()
+    {
+        int count = 0;
+
+        foreach (Transform t in MonsterContainer)
+        {
+            count += 1;
+        }
+
+        enemyCount = count;
     }
 
 }

@@ -51,19 +51,19 @@ public class PlayerMovement : MonoBehaviour
         switch (direction)
         {
             case (Direction.Up):
-                moveEndPos = moveStartPos + (Vector3.up * playerStats.MovementSpeed);
+                moveEndPos = moveStartPos + (Vector3.up * GlobalSettings.TilemapScale);
                 break;
 
             case (Direction.Down):
-                moveEndPos = moveStartPos + (Vector3.down * playerStats.MovementSpeed);
+                moveEndPos = moveStartPos + (Vector3.down * GlobalSettings.TilemapScale);
                 break;
 
             case (Direction.Left):
-                moveEndPos = moveStartPos + (Vector3.left * playerStats.MovementSpeed);
+                moveEndPos = moveStartPos + (Vector3.left * GlobalSettings.TilemapScale);
                 break;
 
             case (Direction.Right):
-                moveEndPos = moveStartPos + (Vector3.right * playerStats.MovementSpeed);
+                moveEndPos = moveStartPos + (Vector3.right * GlobalSettings.TilemapScale);
                 break;
         }
 

@@ -2,12 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum TravelStyle
-{
-    Straight,
-    Target,
-}
-
 [CreateAssetMenu(menuName = "ScriptableObjects/Weapon", fileName = "New Weapon")]
 public class Weapon : ScriptableObject
 {
@@ -21,12 +15,11 @@ public class Weapon : ScriptableObject
     public float TravelSpeed;
     public float BulletLife;  // time in seconds
 
-    public TravelStyle TravelStyle;
+    public BulletTravelStyle TravelStyle;
 
 
     [Header("References")]
     public GameObject BulletPrefab;
-
 
     public void Shoot(Vector3 from, Transform target)
     {

@@ -9,14 +9,13 @@ public class PlayerWeapon : MonoBehaviour
 
     private PlayerBase playerBase;
     private Transform target;
-    private float timer;
 
-    private int shootCounter;
+    private int stepCounter;
 
     private void Awake()
     {
         playerBase = GetComponentInParent<PlayerBase>();
-        shootCounter = 0;
+        stepCounter = 0;
     }
 
     public void UpdateTarget()
@@ -46,9 +45,9 @@ public class PlayerWeapon : MonoBehaviour
 
     public void Shoot()
     {
-        shootCounter += 1;
+        stepCounter += 1;
 
-        if (shootCounter >= currWeapon.StepsToShoot)
+        if (stepCounter >= currWeapon.StepsToShoot)
         {
             UpdateTarget();
             if (target == null) { return; }
@@ -58,7 +57,7 @@ public class PlayerWeapon : MonoBehaviour
                 currWeapon.Shoot(GenerateBulletSpawnPosOffset(i, currWeapon.Projectiles), target);
             }
 
-            shootCounter = 0;
+            stepCounter = 0;
         }
     }
 }

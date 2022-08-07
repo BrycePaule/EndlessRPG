@@ -53,11 +53,11 @@ public class MobMovement : MonoBehaviour
 
         if (Mathf.Abs(_dir.x) >= Mathf.Abs(_dir.y))
         {
-            _dir = moveStartPos + new Vector3(Mathf.Sign(_dir.x) , 0, 0) * mobBase.StatsAsset.MovementSpeed;
+            _dir = moveStartPos + new Vector3(Mathf.Sign(_dir.x) , 0, 0) * GlobalSettings.TilemapScale;
         }
         else
         {
-            _dir = moveStartPos + new Vector3(0, Mathf.Sign(_dir.y), 0) * mobBase.StatsAsset.MovementSpeed;
+            _dir = moveStartPos + new Vector3(0, Mathf.Sign(_dir.y), 0) * GlobalSettings.TilemapScale;
         }
 
         return _dir;

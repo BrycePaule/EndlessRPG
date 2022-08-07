@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[ExecuteInEditMode]
 public class SpawnerOverlay : MonoBehaviour
 {
-
     [SerializeField] private Spawner spawner;
 
     [SerializeField] private GameObject minOverlay;
@@ -16,12 +16,12 @@ public class SpawnerOverlay : MonoBehaviour
     [SerializeField] private Color minColour;
     [SerializeField] private Color maxColour;
 
-    private void FixedUpdate()
+    private void LateUpdate()
     {
-        minOverlay.transform.localScale = new Vector3(spawner.MinSpawnDistanceFromPlayer, spawner.MinSpawnDistanceFromPlayer, 0) * 2;
+        minOverlay.transform.localScale = new Vector3(spawner.MinSpawnTilesFromPlayer, spawner.MinSpawnTilesFromPlayer, 0) * GlobalSettings.TilemapScale * 2;
         minOverlaySR.color = minColour;
 
-        maxOverlay.transform.localScale = new Vector3(spawner.MaxSpawnDistanceFromPlayer, spawner.MaxSpawnDistanceFromPlayer, 0) * 2;
+        maxOverlay.transform.localScale = new Vector3(spawner.MaxSpawnTilesFromPlayer, spawner.MaxSpawnTilesFromPlayer, 0) * GlobalSettings.TilemapScale * 2;
         maxOverlaySR.color = maxColour;
     }
 }
