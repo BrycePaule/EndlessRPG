@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6ba308af69e44345bb211c77103b49c, type: 3}
   m_Name: Pistol
   m_EditorClassIdentifier: 
-  StepsToShoot: 2
-  Damage: 1
+  StepsToShoot: 1
+  Damage: 100
   Projectiles: 1
   BulletSpread: 40
   SizeMultiplier: 1
