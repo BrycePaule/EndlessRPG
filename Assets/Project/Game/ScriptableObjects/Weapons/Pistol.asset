@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6ba308af69e44345bb211c77103b49c, type: 3}
   m_Name: Pistol
   m_EditorClassIdentifier: 
-  FireCooldown: 0.2
+  FireCooldown: 2
   Damage: 10
   Projectiles: 3
   BulletSpread: 40

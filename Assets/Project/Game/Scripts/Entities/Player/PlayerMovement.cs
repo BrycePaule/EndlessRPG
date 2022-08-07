@@ -11,50 +11,66 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private GameEvent_Int eTurnEnd;
 
+    private bool moving;
+    private float moveTime;
+
+    private Vector3 moveStartPos;
+    private Vector3 moveEndPos;
+
     private void Awake()
     {
         playerBase = GetComponentInParent<PlayerBase>();
         playerAnimator = playerBase.GetComponentInChildren<Animator>();
         playerStats = playerBase.StatsAsset;
+
+        moveTime = 0f;
+        moving = false;
     }
 
-    // public void Move(Vector2 dir)
-    // {
-    //     playerBase.transform.position += (Vector3) dir * (playerStats.MovementSpeed * GlobalSettings.TravelSpeedScalar);
-    //     eTurnEnd?.Raise(-1);
-    // }
+    private void Update()
+    {
+        if (!moving) { return; }
+
+        if (moveTime >= 1f)
+        {
+            moving = false;
+            moveTime = 0f;
+        }
+        else
+        {
+            playerBase.transform.position = Vector3.Lerp(moveStartPos, moveEndPos, moveTime);
+            moveTime += (Time.deltaTime / (GlobalSettings.EntityMoveTime * Time.timeScale));
+        }
+    }
 
     public void Move(Direction direction)
     {
-        playerAnimator.ResetTrigger("Move");
+        if (moving) { return; }
+
+        moveStartPos = playerBase.transform.position;
 
         switch (direction)
         {
             case (Direction.Up):
-                playerBase.transform.position += Vector3.up * playerStats.MovementSpeed;
+                moveEndPos = moveStartPos + (Vector3.up * playerStats.MovementSpeed);
                 break;
 
             case (Direction.Down):
-                playerBase.transform.position += Vector3.down * playerStats.MovementSpeed;
+                moveEndPos = moveStartPos + (Vector3.down * playerStats.MovementSpeed);
                 break;
 
             case (Direction.Left):
-                playerBase.transform.position += Vector3.left * playerStats.MovementSpeed;
+                moveEndPos = moveStartPos + (Vector3.left * playerStats.MovementSpeed);
                 break;
 
             case (Direction.Right):
-                playerBase.transform.position += Vector3.right * playerStats.MovementSpeed;
+                moveEndPos = moveStartPos + (Vector3.right * playerStats.MovementSpeed);
                 break;
         }
 
-        eTurnEnd?.Raise(-1);
+        moving = true;
+        playerAnimator.ResetTrigger("Move");
         playerAnimator.SetTrigger("Move");
-
+        eTurnEnd?.Raise(-1);
     }
-
-    // public void MoveUp() => playerBase.transform.position += Vector3.up * playerStats.MovementSpeed;
-    // public void MoveDown() => playerBase.transform.position += Vector3.down * playerStats.MovementSpeed;
-    // public void MoveLeft() => playerBase.transform.position += Vector3.left * playerStats.MovementSpeed;
-    // public void MoveRight() => playerBase.transform.position += Vector3.right * playerStats.MovementSpeed;
-
 }

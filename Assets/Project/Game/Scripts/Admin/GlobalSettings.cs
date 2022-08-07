@@ -8,6 +8,9 @@ public static class GlobalSettings
     public static float TravelSpeedScalar = 0.002f;
 
     // in seconds
+    public static float EntityMoveTime = 0.2f;
+
+    // in seconds
     public static float PlayerHitTimer = 1f; 
 
     // LAYERS

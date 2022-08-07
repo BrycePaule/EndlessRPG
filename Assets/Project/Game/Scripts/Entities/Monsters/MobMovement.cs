@@ -10,36 +10,59 @@ public class MobMovement : MonoBehaviour
 
     private Vector2 target;
 
+    private bool moving;
+    private float moveTime;
+    private Vector3 moveStartPos;
+    private Vector3 moveEndPos;
+
     private void Awake()
     {
         mobBase = GetComponentInParent<MobBase>();
         stats = mobBase.StatsAsset;
+
+        moveTime = 0f;
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
-        // Move();
+        if (!moving) { return; }
+
+        if (moveTime >= 1f)
+        {
+            moving = false;
+            moveTime = 0f;
+        }
+        else
+        {
+            mobBase.transform.position = Vector3.Lerp(moveStartPos, moveEndPos, moveTime);
+            moveTime += (Time.deltaTime / (GlobalSettings.EntityMoveTime * Time.timeScale));
+        }
     }
 
     public void Move()
     {
-        mobBase.transform.position += CalcMoveDir() * 2;
+        if (moving) { return; }
+
+        moveStartPos = mobBase.transform.position;
+        moveEndPos = CalcNextMovePoint();
+        moving = true;
+
+        // mobBase.transform.position += CalcMoveDir() * 2;
     }
 
-    private Vector3 CalcMoveDir()
+    private Vector3 CalcNextMovePoint()
     {
-        Vector3 _dir = (mobBase.Player.transform.position - transform.position).normalized;
+        Vector3 _dir = (mobBase.Player.transform.position - moveStartPos).normalized;
 
         if (Mathf.Abs(_dir.x) >= Mathf.Abs(_dir.y))
         {
-            _dir = new Vector3(Mathf.Sign(_dir.x) , 0, 0);
+            _dir = moveStartPos + new Vector3(Mathf.Sign(_dir.x) , 0, 0) * mobBase.StatsAsset.MovementSpeed;
         }
         else
         {
-            _dir = new Vector3(0, Mathf.Sign(_dir.y), 0);
+            _dir = moveStartPos + new Vector3(0, Mathf.Sign(_dir.y), 0) * mobBase.StatsAsset.MovementSpeed;
         }
 
         return _dir;
     }
-
 }
