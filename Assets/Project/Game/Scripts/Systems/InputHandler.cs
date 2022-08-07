@@ -10,25 +10,47 @@ public class InputHandler : MonoBehaviour
     [SerializeField] private GameObject Player;
 
     [Header("Inputs")]
-    private InputAction _movement;
+    private InputAction movement;
+    private InputAction moveUp;
+    private InputAction moveDown;
+    private InputAction moveLeft;
+    private InputAction moveRight;
+
+    private PlayerMovement playerMovement;
 
     private void Awake() 
     {
+        playerMovement = Player.GetComponentInChildren<PlayerMovement>();
+
         PlayerInput _playerInput = new PlayerInput();
         _playerInput.Enable();
 
-        _movement = _playerInput.Player.Movement;
+        // _movement = _playerInput.Player.Movement;
 
+        moveUp = _playerInput.Player.MoveUp;
+        moveDown = _playerInput.Player.MoveDown;
+        moveLeft = _playerInput.Player.MoveLeft;
+        moveRight = _playerInput.Player.MoveRight;
+
+        moveUp.performed += ctx => OnMoveUp();
+        moveDown.performed += ctx => OnMoveDown();
+        moveLeft.performed += ctx => OnMoveLeft();
+        moveRight.performed += ctx => OnMoveRight();
     }
 
-    private void FixedUpdate()
-    {
-        HandlePlayerMovement();
-    }
+    // private void FixedUpdate()
+    // {
+    //     HandlePlayerMovement();
+    // }
 
-    private void HandlePlayerMovement()
-    {
-        Vector2 dir = _movement.ReadValue<Vector2>();
-        Player.GetComponentInChildren<PlayerMovement>()?.Move(dir);
-    }
+    // private void HandlePlayerMovement()
+    // {
+    //     Vector2 dir = movement.ReadValue<Vector2>();
+    //     playerMovement.Move(dir);
+    // }
+
+    private void OnMoveUp() => playerMovement.Move(Direction.Up);
+    private void OnMoveDown() => playerMovement.Move(Direction.Down);
+    private void OnMoveLeft() => playerMovement.Move(Direction.Left);
+    private void OnMoveRight() => playerMovement.Move(Direction.Right);
 }

@@ -18,13 +18,28 @@ public class MobMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Move();
+        // Move();
     }
 
     public void Move()
     {
-        Vector3 dir = (mobBase.Player.transform.position - transform.position).normalized;
-        mobBase.transform.position += dir * (stats.MovementSpeed * GlobalSettings.TravelSpeedScalar);
+        mobBase.transform.position += CalcMoveDir() * 2;
+    }
+
+    private Vector3 CalcMoveDir()
+    {
+        Vector3 _dir = (mobBase.Player.transform.position - transform.position).normalized;
+
+        if (Mathf.Abs(_dir.x) >= Mathf.Abs(_dir.y))
+        {
+            _dir = new Vector3(Mathf.Sign(_dir.x) , 0, 0);
+        }
+        else
+        {
+            _dir = new Vector3(0, Mathf.Sign(_dir.y), 0);
+        }
+
+        return _dir;
     }
 
 }

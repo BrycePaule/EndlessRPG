@@ -34,12 +34,12 @@ public class Spawner : MonoBehaviour
 
     private Vector3 SelectSpawnPos()
     {
-        float distX = Random.Range(MinSpawnDistanceFromPlayer, MaxSpawnDistanceFromPlayer);
-        float distY = Random.Range(MinSpawnDistanceFromPlayer, MaxSpawnDistanceFromPlayer);
+        int distX = (int) Random.Range(MinSpawnDistanceFromPlayer, MaxSpawnDistanceFromPlayer);
+        int distY = (int) Random.Range(MinSpawnDistanceFromPlayer, MaxSpawnDistanceFromPlayer);
 
         return new Vector3(
-            Roll(50) ? player.transform.position.x + distX : player.transform.position.x - distX,
-            Roll(50) ? player.transform.position.y + distY : player.transform.position.y - distY,
+            2 * (Roll(50) ? player.transform.position.x + distX : player.transform.position.x - distX),
+            2 * (Roll(50) ? player.transform.position.y + distY : player.transform.position.y - distY),
             0
         );
     }

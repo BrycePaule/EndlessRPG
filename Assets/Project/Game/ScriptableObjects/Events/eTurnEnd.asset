@@ -9,10 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbb53b6109a19c347b78a004c7c80c45, type: 3}
-  m_Name: MobStats
+  m_Script: {fileID: 11500000, guid: e3851ca068f519848b5fb8dff5eaf429, type: 3}
+  m_Name: eTurnEnd
   m_EditorClassIdentifier: 
-  MaxHealth: 5
-  MovementSpeed: 2
-  CollisionDamage: 1
-  Bounciness: 0
+  listeners: []
+  LogToConsole: 1
