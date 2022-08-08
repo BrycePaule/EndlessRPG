@@ -1,14 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerWeapon : MonoBehaviour
 {
     [SerializeField] public Weapon currWeapon;
     [SerializeField] private PlayerTargetFinder targetFinder;
+    [SerializeField] private InputHandler inputHandler;
+    [SerializeField] private RectTransform uiCrosshair;
 
     private PlayerBase playerBase;
-    private Transform target;
 
     private int stepCounter;
 
@@ -18,14 +20,9 @@ public class PlayerWeapon : MonoBehaviour
         stepCounter = 0;
     }
 
-    public void UpdateTarget()
-    {
-        target = targetFinder.FindClosestTarget();
-    }
-
     public Vector3 GenerateBulletSpawnPosOffset(int bulletNum, int totalBullets)
     {
-        Vector3 dir = transform.position - target.position;
+        Vector3 dir = transform.position - inputHandler.mousePosWorld;
         float degrees = ((Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg) - 180f) % 360f;
 
         if (totalBullets > 1)
@@ -49,25 +46,31 @@ public class PlayerWeapon : MonoBehaviour
 
         if (stepCounter >= currWeapon.StepsToShoot)
         {
-            UpdateTarget();
-            if (target == null) { return; }
-
             for (int i = 0; i < currWeapon.Projectiles; i++)
             {
-                Vector3 bulletInitOffset = GenerateBulletSpawnPosOffset(i, currWeapon.Projectiles);
+                Vector3 bulletInitPos = GenerateBulletSpawnPosOffset(i, currWeapon.Projectiles);
 
                 switch (currWeapon.TravelStyle)
                 {
-                    case (BulletTravelStyle.Homing):
-                        currWeapon.ShootHoming(bulletInitOffset, target);
-                        break;
+                    // case (BulletTravelStyle.Homing):
+                    //     currWeapon.ShootHoming(bulletInitOffset, target);
+                    //     break;
+
+                    // case (BulletTravelStyle.Mouse):
+                    //     currWeapon.ShootHoming(bulletInitOffset, target);
+                    //     break;
                     
                     default:
-                        currWeapon.Shoot(transform.position, bulletInitOffset);
+                        currWeapon.Shoot(transform.position, bulletInitPos);
                         break;
                 }
             }
             stepCounter = 0;
         }
+    }
+
+    private void Update()
+    {
+        uiCrosshair.position = inputHandler.mousePosScreen;
     }
 }

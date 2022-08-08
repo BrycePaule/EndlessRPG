@@ -24,33 +24,38 @@ public class Weapon : ScriptableObject
     [Header("References")]
     [SerializeField] private GameObject BulletPrefab;
 
-    public void Shoot(Vector3 shooterPos, Vector3 initPos)
+    public void Shoot(Vector3 shooterPos, Vector3 startPos, Transform homingTarget = null)
     {
-        Vector3 dirVector = (initPos - shooterPos).normalized;
+        Vector3 dirVector = (startPos - shooterPos).normalized;
         float angle = Mathf.Atan2(dirVector.y, dirVector.x) * Mathf.Rad2Deg;
 
-        GameObject _bulletObj = Instantiate(BulletPrefab, initPos, Quaternion.AngleAxis(angle, Vector3.forward));
+        GameObject _bulletObj = Instantiate(BulletPrefab, startPos, Quaternion.AngleAxis(angle, Vector3.forward));
         _bulletObj.transform.localScale *= SizeMulti;
 
         Bullet _bullet = _bulletObj.GetComponent<Bullet>();
         InitBulletStats(_bullet);
 
         _bullet.DirVector = dirVector;
+
+        if (homingTarget != null)
+        {
+            _bullet.Target = homingTarget;
+        }
     }
 
-    public void ShootHoming(Vector3 initPos, Transform target)
-    {
-        Vector3 dirVector = (initPos - target.transform.position).normalized;
-        float angle = Mathf.Atan2(dirVector.y, dirVector.x) * Mathf.Rad2Deg;
+    // public void ShootHoming(Vector3 initPos, Transform target)
+    // {
+    //     Vector3 dirVector = (initPos - target.transform.position).normalized;
+    //     float angle = Mathf.Atan2(dirVector.y, dirVector.x) * Mathf.Rad2Deg;
 
-        GameObject _bulletObj = Instantiate(BulletPrefab, initPos, Quaternion.AngleAxis(angle, Vector3.forward));
-        _bulletObj.transform.localScale *= SizeMulti;
+    //     GameObject _bulletObj = Instantiate(BulletPrefab, initPos, Quaternion.AngleAxis(angle, Vector3.forward));
+    //     _bulletObj.transform.localScale *= SizeMulti;
 
-        Bullet _bullet = _bulletObj.GetComponent<Bullet>();
-        InitBulletStats(_bullet);
+    //     Bullet _bullet = _bulletObj.GetComponent<Bullet>();
+    //     InitBulletStats(_bullet);
 
-        _bullet.Target = target;
-    }
+    //     _bullet.Target = target;
+    // }
 
     private void InitBulletStats(Bullet _b)
     {

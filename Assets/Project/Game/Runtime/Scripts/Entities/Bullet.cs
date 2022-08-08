@@ -11,6 +11,8 @@ public class Bullet : MonoBehaviour
     public float BulletLife;
     public int Chain;
     public int Pierce;
+    // TURN RADIUS?
+    // Pass initial v3, and transform and slowly blend to proper direction per turn radius?
 
     public float TravelSpeed;
 

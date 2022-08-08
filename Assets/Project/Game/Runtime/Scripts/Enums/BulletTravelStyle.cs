@@ -6,4 +6,5 @@ public enum BulletTravelStyle
 {
     Straight,
     Homing,
+    Mouse,
 }

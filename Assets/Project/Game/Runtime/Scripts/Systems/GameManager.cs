@@ -12,5 +12,6 @@ public class GameManager : MonoBehaviour
     {
         player.StatsAsset = Instantiate(player.StatsAsset);
         playerWeapon.currWeapon = Instantiate(playerWeapon.currWeapon);
+        Cursor.visible = false;
     }
 }
